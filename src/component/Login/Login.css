@@ -1,0 +1,15 @@
+.form-container{
+   height: 90vh;
+   margin-right: 0;
+   margin-left: 0;
+}
+
+.form-wrapper{
+   /* margin-top: 150px !important; */
+   width: 400px;
+
+   box-shadow: 5px 10px 27px -7px rgba(0,0,0,0.58);
+   -webkit-box-shadow: 5px 10px 27px -7px rgba(0,0,0,0.58);
+   -moz-box-shadow: 5px 10px 27px -7px rgba(0,0,0,0.58);
+   border-radius: 10px;
+}

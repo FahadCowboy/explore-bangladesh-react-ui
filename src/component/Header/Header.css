@@ -1,0 +1,48 @@
+nav{
+   font-family: exo;
+}
+
+.link-font-weight{
+   font-weight: 500;
+   font-size: 1.1rem;
+}
+
+.link-font-weight:hover{
+   color: rgb(230, 217, 217) !important;
+}
+
+.logo{
+   color: white;
+   font-weight: 700;
+   font-size: 2rem;
+}
+.logo:hover{
+   color: white !important;
+}
+
+.user-img-wrap{
+   width: 3rem;
+   border-radius: 50%;
+}
+
+.user-img-wrap img{
+   border-radius: 50%;
+   padding: 3px;
+}
+
+.menu-wrap{
+   flex-basis: 100%;
+}
+
+.user-name{
+   font-weight: 600;
+   font-size: 1.1rem;
+}
+
+.user-email{
+   font-size: 0.9rem;
+}
+
+.logout-btn{
+   font-size: 0.6rem;
+}

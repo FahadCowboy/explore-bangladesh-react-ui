@@ -29,7 +29,7 @@ const Booking = () => {
                <h2 className="text-white mb-5">Book a cottage</h2>
                <div>
                   <div className="form-floating pb-3">
-                     <input type="text" className="form-control mb-4" id="placeName"/>
+                     <input type="text" className="form-control mb-4" id="placeName"  placeholder="Drop place name"/>
                      <label for="placeName" className="form-label">Place name</label>
                   </div>
                   <div className="form-floating pb-3">
@@ -38,11 +38,11 @@ const Booking = () => {
                   </div>
                   <div className="form-floating pb-3">
                      <input type="email" className="form-control mb-4" id="yourEmail" placeholder="Drop your email"/>
-                     <label for="yourEmail" className="form-label">Another label</label>
+                     <label for="yourEmail" className="form-label">Email</label>
                   </div>
                   <div className="form-floating pb-3">
                      <input type="text" className="form-control mb-4" id="address" placeholder="Drop your address"/>
-                     <label for="address" className="form-label">Another label</label>
+                     <label for="address" className="form-label">Address</label>
                   </div>
                   <div className="form-floating pb-3">
                      <input type="submit" value="Book +" class="btn btn-primary"/>
