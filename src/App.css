@@ -1,10 +1,30 @@
 .App {
-  text-align: center;
+  font-family: exo;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.theme-bg{
+  background-color: #996cf1f2 !important;
+}
+
+.theme-text{
+  color: #6a4ca4 !important;
+}
+
+.theme-bg-green{
+  background-color: #006808 !important;
+}
+
+.theme-text-green{
+  color: #006808 !important;
+}
+
+.custom-border-none{
+  border: none !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -1,0 +1,14 @@
+.place-detailes-wrap{
+   border: none !important;
+   padding-top: 0.7rem;
+}
+
+.book-now-wrapper{
+   border: 1px solid #996cf1b0;
+   border-right: none;
+}
+
+.book-now-wrapper>form> h2{
+   font-weight: 700;
+   font-size: 3rem;
+}

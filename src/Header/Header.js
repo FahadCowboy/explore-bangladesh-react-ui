@@ -1,32 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Header.css'
 
 const Header = () => {
    return (
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-         <Link class="navbar-brand" href="#">Navbar</Link>
+   <nav class="container-fluid px-0 navbar navbar-expand-lg theme-bg bg-primary">
+      <div class="container">
+         <Link class="navbar-brand logo" to="#">
+            Explore Bangladesh
+         </Link>
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
          </button>
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                <li class="nav-item">
-                  <Link class="nav-link active" aria-current="page" href="#">Home</Link>
+                  <Link class="nav-link text-white link-font-weight" to="/home">Home</Link>
                </li>
                <li class="nav-item">
-                  <Link class="nav-link" href="#">Link</Link>
+                  <Link class="nav-link text-white link-font-weight" to="#">Link</Link>
                </li>
-               <li class="nav-item dropdown">
-                  <Link class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     Dropdown
-                  </Link>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                     <li><Link class="dropdown-item" href="#">Action</Link></li>
-                     <li><Link class="dropdown-item" href="#">Another action</Link></li>
-                     <li><hr class="dropdown-divider"/></li>
-                     <li><Link class="dropdown-item" href="#">Something else here</Link></li>
-                  </ul>
+               <li class="nav-item">
+                  <Link class="nav-link text-white link-font-weight" to="#">Link</Link>
+               </li>
+               <li class="nav-item">
+                  <Link class="nav-link text-white link-font-weight" to="#">Link</Link>
+               </li>
+               <li class="nav-item">
+                  <Link class="nav-link text-white link-font-weight" to="#">Link</Link>
                </li>
             </ul>
             <form class="d-flex">

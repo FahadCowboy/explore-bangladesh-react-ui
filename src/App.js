@@ -5,10 +5,11 @@ import Login from './Login/Login';
 import Home from './Home/Home';
 import Signup from './Signup/Signup';
 import Header from './Header/Header';
+import Booking from './Booking/Booking';
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <Router>
         <Header></Header>
         <Switch>
@@ -17,6 +18,9 @@ function App() {
           </Route>
           <Route exact path="/home">
             <Home></Home>
+          </Route>
+          <Route exact path="/Booking/:id">
+            <Booking></Booking>
           </Route>
           <Route exact path="/login">
             <Login></Login>
