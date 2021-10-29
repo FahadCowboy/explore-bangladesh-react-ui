@@ -4,7 +4,7 @@ import useAuth from '../../hooks/useAuth';
 import './Header.css'
 
 const Header = () => {
-   const {user, googleSignin, logOut} = useAuth()
+   const {user, logOut} = useAuth()
    console.log(user)
 
    return (
@@ -50,7 +50,7 @@ const Header = () => {
                </div>
                 :
                <div className="text-end">
-                  <button type="button" onClick={googleSignin} className="btn btn-outline-light me-2">Login</button>
+                  <Link to="/login" className="btn btn-outline-light me-2">Login</Link>
                </div>
             }
             
