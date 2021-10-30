@@ -1,18 +1,65 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import useAuth from '../../hooks/useAuth';
 import './Booking.css'
 
 const Booking = () => {
-   const {id} = useParams()
+   const { id } = useParams()
+   const { user } = useAuth()
    const [place, setPlace] = useState({})
+
+   // const [placeName, setPlaceName] = useState('')
+   // const [name, setName] = useState('')
+   // const [email, setEmail] = useState('')
+   const [address, setAddress] = useState('')
+
+
    useEffect(() => {
       fetch(`http://localhost:4000/places/${id}`)
       .then(res => res.json())
       .then(data => setPlace(data))
    }, [])
 
+   // const handlePlaceName = e => {
+   //    const place = e.target.value
+   //    setPlaceName(place)
+   // }
+
+   // const handleUserName = e => {
+   //    const name = e.target.value
+   //    setName(name)
+   // }
+
+   // const handleEmail = e => {
+   //    const email = user.email
+   //    setEmail(email)
+   // }
+
+   const handleAddress = e => {
+      const address = e.target.value
+      setAddress(address)
+   }
+
    const handleBooking = e => {
       e.preventDefault()
+      const order = {
+         place: place.name,
+         name: user.displayName,
+         email: user.email,
+         address,
+         image: place.image
+      }
+
+      fetch('http://localhost:4000/orders', {
+         method: 'POST',
+         headers: {
+            'content-type': 'application/json'
+         },
+         body: JSON.stringify(order)
+      })
+      .then(res => res.json())
+
+      console.log(order)
    }
 
    return (
@@ -29,23 +76,23 @@ const Booking = () => {
                <h2 className="text-white mb-5">Book a cottage</h2>
                <div>
                   <div className="form-floating pb-3">
-                     <input type="text" className="form-control mb-4" id="placeName"  placeholder="Drop place name"/>
-                     <label for="placeName" className="form-label">Place name</label>
+                     <input type="text" className="form-control mb-4" id="placeName" readOnly  value={place.name || ''} placeholder="Drop place name"/>
+                     <label htmlFor="placeName" className="form-label">Place name</label>
                   </div>
                   <div className="form-floating pb-3">
-                     <input type="text" className="form-control mb-4" id="yourName" placeholder="Drop your name"/>
-                     <label for="yourName" className="form-label">Your name</label>
+                     <input type="text" className="form-control mb-4" id="yourName" readOnly value={user.displayName} placeholder="Drop your name"/>
+                     <label htmlFor="yourName" className="form-label">Your name</label>
                   </div>
                   <div className="form-floating pb-3">
-                     <input type="email" className="form-control mb-4" id="yourEmail" placeholder="Drop your email"/>
-                     <label for="yourEmail" className="form-label">Email</label>
+                     <input type="email" className="form-control mb-4" id="yourEmail" placeholder="Drop your email" readOnly value={user.email || ''}/>
+                     <label htmlFor="yourEmail" className="form-label">Email</label>
                   </div>
                   <div className="form-floating pb-3">
-                     <input type="text" className="form-control mb-4" id="address" placeholder="Drop your address"/>
-                     <label for="address" className="form-label">Address</label>
+                     <input onBlur={handleAddress} type="text" className="form-control mb-4" id="address" placeholder="Drop your address"/>
+                     <label htmlFor="address" className="form-label">Address</label>
                   </div>
                   <div className="form-floating pb-3">
-                     <input type="submit" value="Book +" class="btn btn-primary"/>
+                     <input type="submit" value="Book +" className="btn btn-primary"/>
                   </div>
                </div>
             </form>

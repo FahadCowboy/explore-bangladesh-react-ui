@@ -6,7 +6,7 @@ import './Login.css'
 
 const Login = () => {
 
-   const {googleSignin, gitHubLogin} = useAuth()
+   const {user, googleSignin, gitHubLogin} = useAuth()
    const location = useLocation()
    const history = useHistory()
    const redirect_uri = location.state?.from || '/home'
@@ -30,7 +30,35 @@ const Login = () => {
    const handleGoogleLogin = () => {
       googleSignin()
       .then(result => {
+
+         const {displayName, email, photoURL} = result.user
+
+         const user = {
+            name: displayName,
+            email: email,
+            image: photoURL,
+         }
+
+         fetch(`http://localhost:4000/users/${email}`)
+         .then(res => res.json())
+         .then(data => {
+            console.log(data)
+            if(data.email === undefined){
+               console.log(data)
+               fetch('http://localhost:4000/users', {
+                  method: 'POST',
+                  headers: {
+                     'content-type': 'application/json'
+                  },
+                  body: JSON.stringify(user)
+               })
+               .then(res => res.json())
+               .then(data => console.log(data))
+            }
+         })
+         
          history.push(redirect_uri)
+
       })
    }
    const handleGitHubLogin = () => {

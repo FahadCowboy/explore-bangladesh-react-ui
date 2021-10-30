@@ -5,7 +5,6 @@ import './Header.css'
 
 const Header = () => {
    const {user, logOut} = useAuth()
-   console.log(user)
 
    return (
    <nav className="container-fluid px-0 navbar navbar-expand-lg theme-bg">
@@ -22,7 +21,7 @@ const Header = () => {
                   <Link className="nav-link text-white link-font-weight" to="/home">Home</Link>
                </li>
                <li className="nav-item">
-                  <Link className="nav-link text-white link-font-weight" to="#">Link</Link>
+                  <Link className="nav-link text-white link-font-weight" to="/orders">Orders</Link>
                </li>
                <li className="nav-item">
                   <Link className="nav-link text-white link-font-weight" to="#">Link</Link>
@@ -37,7 +36,7 @@ const Header = () => {
             {
              user ? 
                <div className="d-flex">
-                  <div className="user-img-wrap theme-bg-green me-2">
+                  <div className="user-img-wrap me-2">
                      <img src={user.photoURL} className="w-100" alt="" />
                   </div>
                   <div className="user-name-email text-white d-flex flex-column justify-content-around">
