@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import './Booking.css'
 
@@ -15,7 +16,7 @@ const Booking = () => {
 
 
    useEffect(() => {
-      fetch(`http://localhost:4000/places/${id}`)
+      fetch(`https://explorebd.herokuapp.com/places/${id}`)
       .then(res => res.json())
       .then(data => setPlace(data))
    }, [])
@@ -50,7 +51,7 @@ const Booking = () => {
          image: place.image
       }
 
-      fetch('http://localhost:4000/orders', {
+      fetch('https://explorebd.herokuapp.com/orders', {
          method: 'POST',
          headers: {
             'content-type': 'application/json'
@@ -92,7 +93,8 @@ const Booking = () => {
                      <label htmlFor="address" className="form-label">Address</label>
                   </div>
                   <div className="form-floating pb-3">
-                     <input type="submit" value="Book +" className="btn btn-primary"/>
+                     <Link to="/home"><input type="submit" value="Book +" className="btn btn-primary"/></Link>
+                     
                   </div>
                </div>
             </form>

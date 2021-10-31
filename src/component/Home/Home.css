@@ -1,4 +1,13 @@
 .places-headding{
    font-weight: 700;
-   font-size: 4rem;
+   font-size: 3rem;
+}
+
+.slider-parent{
+   /* padding: 2px; */
+}
+
+.slider-parent  img{
+   height: 65vh;
+
 }

@@ -1,0 +1,12 @@
+.orders-headding{
+   font-weight: 700;
+   font-size: 3rem;
+}
+
+.order-wrapper p{
+   font-size: 0.9rem;
+}
+
+.order-wrapper h5{
+   font-weight: 600;
+}

@@ -6,7 +6,7 @@ import './Login.css'
 
 const Login = () => {
 
-   const {user, googleSignin, gitHubLogin} = useAuth()
+   const {user, googleSignin, gitHubLogin, isLoading, setIsLoading} = useAuth()
    const location = useLocation()
    const history = useHistory()
    const redirect_uri = location.state?.from || '/home'
@@ -39,13 +39,13 @@ const Login = () => {
             image: photoURL,
          }
 
-         fetch(`http://localhost:4000/users/${email}`)
+         fetch(`https://explorebd.herokuapp.com/users/${email}`)
          .then(res => res.json())
          .then(data => {
             console.log(data)
             if(data.email === undefined){
                console.log(data)
-               fetch('http://localhost:4000/users', {
+               fetch('https://explorebd.herokuapp.com/users', {
                   method: 'POST',
                   headers: {
                      'content-type': 'application/json'
@@ -60,6 +60,7 @@ const Login = () => {
          history.push(redirect_uri)
 
       })
+      .finally(() => setIsLoading(false))
    }
    const handleGitHubLogin = () => {
       gitHubLogin()

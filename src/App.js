@@ -7,7 +7,10 @@ import Login from './component/Login/Login';
 import Signup from './component/Signup/Signup';
 import AuthProvider from './context/AuthProvider';
 import PrivateRoute from './component/PrivateRoute/PrivateRoute';
-import Orders from './Orders/Orders';
+import Orders from './component/Orders/Orders';
+import ManageOrders from './component/ManageOrders/ManageOrders';
+import AddPlace from './component/AddPlace/AddPlace';
+import Footer from './component/Footer/Footer';
 
 function App() {
   return (
@@ -28,6 +31,12 @@ function App() {
             <PrivateRoute exact path="/orders">
               <Orders></Orders>
             </PrivateRoute>
+            <PrivateRoute exact path="/allOrders">
+              <ManageOrders></ManageOrders>
+            </PrivateRoute>
+            <PrivateRoute exact path="/addPlace">
+              <AddPlace></AddPlace>
+            </PrivateRoute>
             <Route exact path="/login">
               <Login></Login>
             </Route>
@@ -35,6 +44,8 @@ function App() {
               <Signup></Signup>
             </Route>
           </Switch>
+
+          <Footer></Footer>
         </Router>
       </AuthProvider>
     </div>

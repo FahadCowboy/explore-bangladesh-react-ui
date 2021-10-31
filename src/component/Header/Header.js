@@ -2,21 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import './Header.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 const Header = () => {
    const {user, logOut} = useAuth()
 
    return (
-   <nav className="container-fluid px-0 navbar navbar-expand-lg theme-bg">
+   <nav className="container-fluid g-5 px-0 navbar navbar-expand-lg theme-bg">
       <div className="container">
-         <Link className="navbar-brand logo" to="#">
-            Explore Bangladesh
+         <Link className="navbar-brand logo m-0" to="/home">
+            Explore BD
          </Link>
          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon text-white" ><FontAwesomeIcon icon={faBars} /></span>
          </button>
          <div className="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-            <ul className="navbar-nav mb-2 pe-lg-5">
+            <ul className="navbar-nav menu-wrapper mb-2">
                <li className="nav-item">
                   <Link className="nav-link text-white link-font-weight" to="/home">Home</Link>
                </li>
@@ -24,13 +26,10 @@ const Header = () => {
                   <Link className="nav-link text-white link-font-weight" to="/orders">Orders</Link>
                </li>
                <li className="nav-item">
-                  <Link className="nav-link text-white link-font-weight" to="#">Link</Link>
+                  <Link className="nav-link text-white link-font-weight" to="/allOrders">Manage Orders</Link>
                </li>
                <li className="nav-item">
-                  <Link className="nav-link text-white link-font-weight" to="#">Link</Link>
-               </li>
-               <li className="nav-item">
-                  <Link className="nav-link text-white link-font-weight" to="#">Link</Link>
+                  <Link className="nav-link text-white link-font-weight" to="/addPlace">Add new place</Link>
                </li>
             </ul>
             {
