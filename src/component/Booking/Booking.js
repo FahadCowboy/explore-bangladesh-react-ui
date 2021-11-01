@@ -48,17 +48,20 @@ const Booking = () => {
          name: user.displayName,
          email: user.email,
          address,
-         image: place.image
+         image: place.image,
+         orderStatus: false
       }
-
+      console.log(order)
       fetch('https://explorebd.herokuapp.com/orders', {
          method: 'POST',
          headers: {
-            'content-type': 'application/json'
+            "content-type": "application/json"
          },
          body: JSON.stringify(order)
       })
       .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err))
 
       console.log(order)
    }
@@ -93,7 +96,9 @@ const Booking = () => {
                      <label htmlFor="address" className="form-label">Address</label>
                   </div>
                   <div className="form-floating pb-3">
-                     <Link to="/home"><input type="submit" value="Book +" className="btn btn-primary"/></Link>
+                     {/* <Link to="/home"> */}
+                        <input type="submit" value="Book +" className="btn btn-primary"/>
+                        {/* </Link> */}
                      
                   </div>
                </div>

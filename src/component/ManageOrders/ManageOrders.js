@@ -1,14 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import './ManageOrders.css'
 
+// HashLoader
+import { css } from "@emotion/react";
+import HashLoader from "react-spinners/HashLoader";
+import Footer from '../Footer/Footer';
+
+// Can be a string as well. Need to ensure each key-value pair ends with ;
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
 const ManageOrders = () => {
    const [orders, setOrders] = useState([])
+   const [updatedOrder, setUpdatedOrder] = useState({})
+
+      // HashLoader states
+      let [loading, setLoading] = useState(true);
+      let [color, setColor] = useState("#3a206e");
 
    useEffect(() => {
       fetch(`https://explorebd.herokuapp.com/orders`)
       .then(res => res.json())
       .then(data => setOrders(data))
    }, [])
+
+   useEffect(() => {
+      setUpdatedOrder(updatedOrder)
+   }, [updatedOrder])
 
    const handleOrderDelete = id => {
       const isAgreeToDelete = window.confirm('Are you agree to cancell this order?')
@@ -26,11 +47,39 @@ const ManageOrders = () => {
       }
    }
 
-   const handleOrderConfirm = () => {
-
+   const handleOrderConfirm = id => {
+      const foundOrder = orders.find(order => order._id === id)
+      foundOrder.orderStatus = true
+      fetch(`https://explorebd.herokuapp.com/orders/${id}`, {
+         method: 'PUT',
+         headers: {
+            "content-type": "application/json"
+         },
+         body: JSON.stringify(foundOrder)
+      })
+      .then(res => res.json())
+      .then(data => {
+         if(data.modifiedCount === 1){
+            // const updateOrder = orders.find(order => order._id === id)
+            setUpdatedOrder(foundOrder)
+         }
+         // console.log(data)
+      })
+      console.log(foundOrder)
    }
 
+
+
+   console.log(updatedOrder)
+
    return (
+      <>
+      { orders.length === 0 ? 
+         <div className="sweet-loading loader-parent">
+            <HashLoader color={color} loading={loading} css={override} size={150} />
+         </div> 
+         :
+
       <div className="container d-flex flex-column align-items-center my-5">
          <h1 className="orders-headding pb-4 text-center theme-text">Manage all the orders</h1>
          {
@@ -48,7 +97,12 @@ const ManageOrders = () => {
                            <p className="card-text mb-1 d-none d-sm-block">{order.address}</p>
                         </div>
                         <div className="ms-auto me-3 mb-3">
-                           <button onClick={() => handleOrderConfirm(order._id)} type="button" className="logout-btn btn btn-outline-info btn-sm fw-bold me-2">Confirm</button>
+                           { order.orderStatus === true?
+                              <button className="confirmed-btn btn btn-primary p-1 btn-lg disabled" tabIndex="-1" aria-disabled="true">Confirmed</button>
+                              :
+                              <button onClick={() => handleOrderConfirm(order._id)} type="button" className="logout-btn btn btn-outline-info btn-sm fw-bold me-2">Confirm</button>
+
+                           }
                            <button onClick={() => handleOrderDelete(order._id)} type="button" className="logout-btn btn btn-outline-warning btn-sm fw-bold">Cancel</button>
                         </div>
                      </div>
@@ -57,6 +111,8 @@ const ManageOrders = () => {
             ))
          }
       </div>
+      }
+      </>
    );
 };
 

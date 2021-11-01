@@ -7,7 +7,7 @@ const Footer = () => {
    const {user} = useAuth()
    console.log(user)
    return (
-      <div className="container-fluid theme-bg">
+      <div className="container-fluid footer-wrap theme-bg">
          <div className="container py-4">
             <div className="row align-items-center">
                <div className="col-12 col-lg-4 justify-content-between" id="navbarSupportedContent">
