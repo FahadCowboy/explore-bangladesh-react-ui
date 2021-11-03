@@ -18,7 +18,7 @@ const Home = () => {
    const [places, setPlaces] = useState([])
    
    // HashLoader states
-   let [loading, setLoading] = useState(true);
+   let [loading, setLoading] = useState(false);
    let [color, setColor] = useState("#3a206e");
 
    let dataBsSlide = 0
@@ -26,9 +26,13 @@ const Home = () => {
 
    console.log(places)
    useEffect(() => {
+      setLoading(true)
       fetch('https://explorebd.herokuapp.com/places')
       .then(res => res.json())
-      .then(data => setPlaces(data))
+      .then(data => {
+         setPlaces(data)
+         setLoading(false)
+      })
    }, [])
 
 
@@ -41,7 +45,7 @@ const Home = () => {
 
    return (
       <>
-      { places.length === 0 ? 
+      { loading ? 
          <div className="sweet-loading loader-parent">
             <HashLoader color={color} loading={loading} css={override} size={150} />
          </div>
@@ -50,7 +54,7 @@ const Home = () => {
 
       <>
       <div className="container-fluid theme-bg pb-3">
-         <div id="carouselExampleIndicators" className="container carousel slide slider-parent" data-bs-ride="carousel">
+         <div id="carouselExampleIndicators" className="container px-0 carousel slide slider-parent" data-bs-ride="carousel">
             <div className="carousel-indicators">
                {
                   places.map(place => <button key={place._id} type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={`${dataBsSlide++}`} className={(places.indexOf(place) === 0 ? " active" : "" )} aria-current="true" aria-label={`Slide ${ariaLabelCounter++}`}></button>)
@@ -77,7 +81,7 @@ const Home = () => {
          </div>      
       
       <div className="container">
-            <div className="pt-5">
+            <div className="pt-5 mt-5">
                <h1 className="places-headding pb-4 text-center theme-text">Amazing places to visit</h1>
                <div className="row justify-content-center g-3 g-lg-3 g-md-2 mb-5">
                {
@@ -86,26 +90,29 @@ const Home = () => {
                </div>
             </div>
 
-            <div>
+            <div className="py-5 container">
                <h1 className="places-headding pb-4 text-center theme-text">Some important info</h1>
                <div className="info-wrapper row justify-content-center">
                   <div className="col-12 col-lg-9 p-4 text-white theme-bg rounded mb-4">
-                     <h3>Heath</h3>
+                     <h3 className="text-warning">Heath</h3>
                      <p>Public health services in Bangladesh are free for foreign tourists. Therefore, if you are in an accident, need medical attention, or have any health issues, just call the Mobile Emergency Medical Service on the toll-free number below.</p>
-                     <p>Government Mobile Emergency Medical Service: 999</p>
+                     <p className="fw-bold text-info mb-0">Government Mobile Emergency Medical Service: <span className="text-warning">999</span></p>
                   </div>
                   <div className="col-12 col-lg-9 p-4 text-white theme-bg rounded mb-4">
-                     <h3>Vaccination</h3>
-                     <p>In order to enter Bangladesh, it is not mandatory to be vaccinated against any specific type of disease. However, your shoud be vaccinated against common diseases before the visit which is also good for your own heath security. Wherever in the world you go, you need to keep yourself protected from the diseases people carry and try to prevent speading the diseases you carry.</p>
+                     <h3 className="text-warning">Vaccination</h3>
+                     <p className="mb-0">In order to enter Bangladesh, it is not mandatory to be vaccinated against any specific type of disease. However, your shoud be vaccinated against common diseases before the visit which is also good for your own heath security. Wherever in the world you go, you need to keep yourself protected from the diseases people carry and try to prevent speading the diseases you carry.</p>
                   </div>
                   <div className="col-12 col-lg-9 p-4 text-white theme-bg rounded mb-4">
-                     <h3>Covid-19</h3>
-                     <p>The world was forced to slow down due to the COVID-19 pandemic. However, as vaccination advances, your next trip to Brazil can already happen!</p>
+                     <h3 className="text-warning">Covid-19</h3>
+                     <p className="mb-0">The world was forced to slow down due to the COVID-19 pandemic. However, as vaccination advances, your next trip to Brazil can already happen!</p>
                   </div>
                </div>
             </div>
       </div>
-      <Footer></Footer>
+      <div>
+      {/* <Footer></Footer> */}
+         
+      </div>
       </>
       }
       </>

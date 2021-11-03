@@ -31,6 +31,26 @@
   margin: 15rem auto;
 }
 
+.footer-wrap{
+  position:relative;
+  left:0;
+  bottom:0;
+  right:0;
+}
+
+.cart-empty{
+  color: #949faa ;
+}
+
+
+.order-btn{
+  font-size: 0.8rem;
+}
+
+.pending-confirm-text {
+  font-size: 0.9rem;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

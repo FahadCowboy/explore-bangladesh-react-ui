@@ -11,24 +11,24 @@ const Header = () => {
    return (
    <nav className="container-fluid px-0 navbar navbar-expand-lg theme-bg">
       <div className="container">
-         <Link className="navbar-brand logo m-0" to="/home">
-            Explore BD
+         <Link className="navbar-brand m-0" to="/home">
+            <p className="logo">Explore <span className="text-danger logo">B</span><span className="text-success logo">D</span></p>
          </Link>
-         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon text-white" ><FontAwesomeIcon icon={faBars} /></span>
+         <button className="navbar-toggler p-1 pt-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon text-white w-auto h-auto fs-1" ><FontAwesomeIcon icon={faBars} /></span>
          </button>
          <div className="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
             <ul className="navbar-nav menu-wrapper justify-content-center mb-2">
                <li className="nav-item">
                   <Link className="nav-link text-white link-font-weight" to="/home">Home</Link>
                </li>
-               <li className="nav-item">
+               <li className="nav-item ms-5">
                   <Link className="nav-link text-white link-font-weight" to="/orders">Orders</Link>
                </li>
-               <li className="nav-item">
+               <li className="nav-item ms-5">
                   <Link className="nav-link text-white link-font-weight" to="/allOrders">Manage Orders</Link>
                </li>
-               <li className="nav-item">
+               <li className="nav-item ms-5">
                   <Link className="nav-link text-white link-font-weight" to="/addPlace">Add new place</Link>
                </li>
             </ul>

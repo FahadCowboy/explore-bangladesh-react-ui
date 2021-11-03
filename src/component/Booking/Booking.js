@@ -68,7 +68,7 @@ const Booking = () => {
 
    return (
       <div className="container">
-         <div className="row my-5 rounded book-now-wrapper">
+         <div className="row mx-0 my-5 rounded book-now-wrapper">
             <div className="card place-detailes-wrap mb-3 col-12 col-md-12 col-lg-8">
                <img src={place.image} className="card-img-top" alt="..."/>
                <div className="card-body">

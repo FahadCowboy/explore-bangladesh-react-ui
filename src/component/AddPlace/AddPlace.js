@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import Footer from '../Footer/Footer';
 import './AddPlace.css'
 
 const AddPlace = () => {
@@ -22,6 +23,7 @@ const AddPlace = () => {
    };
 
    return (
+      <>
       <div className="container d-flex justify-content-center my-5">
          <form onSubmit={handleSubmit(onSubmit)} className="col-12 col-md-12 py-5 col-lg-5 p-4 text-center theme-bg d-flex flex-column justify-content-center rounded">
             <h2 className="text-white mb-5">Book a cottage</h2>
@@ -45,6 +47,8 @@ const AddPlace = () => {
             </div>
          </form>
       </div>
+      {/* <Footer></Footer> */}
+      </>
    );
 };
 

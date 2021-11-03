@@ -97,7 +97,7 @@ const Login = () => {
                <div className="d-flex flex-column">
                   {/* <button type="submit" className="btn btn-primary" onClick={handleEmailPaaLogin}>Login</button> */}
                   <button type="button" className="btn btn-outline-warning mt-2" onClick={handleGoogleLogin}>Login with Goole</button>
-                  <button type="button" className="btn btn-outline-warning mt-2" onClick={handleGitHubLogin}>Login with GitHub</button>
+                  {/* <button type="button" className="btn btn-outline-warning mt-2" onClick={handleGitHubLogin}>Login with GitHub</button> */}
                   {/* <Link to="/signup" className="mt-2">but Not registered yet?</Link> */}
                </div>
             </form>

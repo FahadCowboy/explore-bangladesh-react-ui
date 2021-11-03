@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import './Orders.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // HashLoader
 import { css } from "@emotion/react";
 import HashLoader from "react-spinners/HashLoader";
 import Footer from '../Footer/Footer';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 // Can be a string as well. Need to ensure each key-value pair ends with ;
 const override = css`
@@ -21,13 +23,21 @@ const Orders = () => {
    const [isConfirm, setIsConfirm] = useState(false)
 
    // HashLoader states
-   let [loading, setLoading] = useState(true);
+   let [loading, setLoading] = useState(false);
    let [color, setColor] = useState("#3a206e");
 
    useEffect(() => {
-      fetch(`https://explorebd.herokuapp.com/orders/${user.email}`)
+      setLoading(true)
+      fetch(`https://explorebd.herokuapp.com/orders/${user.email}`, {
+         headers: {
+            'authorization': `Bearer ${localStorage.getItem('idToken')}`
+         }
+      })
       .then(res => res.json())
-      .then(data => setOrders(data))
+      .then(data => {
+         setOrders(data)
+         setLoading(false)
+      })
    }, [])
 
    
@@ -43,6 +53,7 @@ const Orders = () => {
             if(data.deletedCount === 1) {
                const filterdOrders = orders.filter(order => order._id !== id)
                setOrders(filterdOrders)
+               loading.length === 0 && setLoading(false)  
             }
          })
       }
@@ -54,17 +65,24 @@ const Orders = () => {
       { orders.length === 0 ? 
          <div className="sweet-loading loader-parent">
             <HashLoader color={color} loading={loading} css={override} size={150} />
+            {
+               !loading &&  orders.length === 0 ? 
+                  <div className="text-center loader-parent">
+                     <h1 className="cart-empty">Cart is empty!</h1>
+                  </div> : ''
+               
+            }
          </div>
 
       :
 
       <>
-      <div className="container d-flex flex-column align-items-center my-5">
+      <div className="container d-flex flex-column align-items-center my-5 py-5">
          <h1 className="orders-headding pb-4 text-center theme-text">Places you have chosen</h1>
          {
             orders.map(order => (
                <div key={order._id} className="card mb-3 border-0" style={{maxWidth: "700px"}}>
-                  <div className="row g-0 theme-bg">
+                  <div className="row g-0 rounded theme-bg">
                      <div className=" col-5 col-md-6">
                         <img src={order.image} className="h-100 img-fluid rounded-start" alt="..."/>
                      </div>
@@ -78,12 +96,11 @@ const Orders = () => {
                         <div className="ms-auto me-3 mb-3 d-flex justify-content-end align-items-center">
                            {
                               order.orderStatus === true ?
-                              <button className="confirmed-btn btn btn-primary p-1 btn-lg disabled" tabIndex="-1" aria-disabled="true">Confirmed</button>
+                              <p className="m-0 me-3 pending-confirm-text">Confirmed <FontAwesomeIcon className="text-info mt-2" icon={faCheckCircle}/></p>
                               :
-                              <p className="m-0 me-2">Pending</p>
-
+                              <p className="m-0 me-2 pending-confirm-text">Pending...</p>
                            }
-                           <button onClick={() => handleOrderDelete(order._id)} type="button" className="logout-btn btn btn-outline-warning btn-sm fw-bold">Cancel Order</button>
+                           <button onClick={() => handleOrderDelete(order._id)} type="button" className="logout-btn btn btn-outline-warning btn-sm fw-bold">Cancel</button>
                         </div>
                      </div>
                   </div>
@@ -91,7 +108,6 @@ const Orders = () => {
             ))
          }
       </div>
-      <Footer></Footer>
       </>
       }
       </>
